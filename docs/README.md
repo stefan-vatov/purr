@@ -26,8 +26,8 @@ Add `config/purr.exs`
 use Mix.Config
 
 config :purr, :github,
-  url: 'https://api.github.com/',
-  token: '<token>'
+  url: "https://api.github.com/",
+  token: "<token>"
 
 config :purr, :repos, [
   %{owner: "<owner>", name: "<repo>"},
