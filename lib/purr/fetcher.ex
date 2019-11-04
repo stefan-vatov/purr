@@ -56,7 +56,8 @@ defmodule Purr.Fetcher do
       number: 0,
       comment_count: 0,
       file_count: 0,
-      html_url: ""
+      html_url: "",
+      approval_count: 0
     }
 
     details = %{details | labels: data["labels"]}
@@ -67,6 +68,7 @@ defmodule Purr.Fetcher do
     details = %{details | number: data["number"]}
     details = %{details | html_url: data["html_url"]}
     details = %{details | comment_count: get_comment_count(repo, data["number"])}
+    details = %{details | approval_count: get_approval_count(repo, data["number"])}
     details = Map.merge(details, get_file_count(repo, data["number"]))
   end
 
@@ -94,6 +96,15 @@ defmodule Purr.Fetcher do
       :change_additions => change_additions,
       :change_deletions => change_deletions
     }
+  end
+
+  def get_approval_count(repo, pr_number) do
+    Logger.info("Grabbing reviews for #{inspect(repo)} and PR #{inspect(pr_number)}")
+
+    {_, body, _response} =
+      Tentacat.Pulls.Reviews.list(@client, repo[:owner], repo[:name], pr_number)
+
+    length(Enum.filter(body, fn x -> x["state"] == "APPROVED" end))
   end
 
   def add_lists(enumerator, list) do
