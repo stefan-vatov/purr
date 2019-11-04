@@ -95,7 +95,7 @@ COPY . /opt/purr
 
 WORKDIR /opt/purr
 
-RUN mix local.hex --force
+RUN mix local.hex --force && mix local.rebar --force
 RUN mix deps.get & cd assets && npm install && npm rebuild node-sass
 
 CMD ["mix", "phx.server"]

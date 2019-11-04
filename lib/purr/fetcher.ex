@@ -1,10 +1,10 @@
 defmodule Purr.Fetcher do
   require Logger
 
-  @client Tentacat.Client.new(%{
-            access_token: Application.get_env(:purr, :github)[:token],
-            endpoint: Application.get_env(:purr, :github)[:url]
-          })
+  @client Tentacat.Client.new(
+            %{access_token: Application.get_env(:purr, :github)[:token]},
+            Application.get_env(:purr, :github)[:url]
+          )
 
   @repos Application.get_env(:purr, :repos)
 
