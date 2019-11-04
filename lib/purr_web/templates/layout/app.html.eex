@@ -21,7 +21,7 @@
         
   </div>
   </div>
-    <div class="container-lg clearfix">
+    <div class="container-lg clearfix mb-5">
       <%= render @view_module, @view_template, assigns %>
     </div>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
