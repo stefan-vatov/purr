@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Purr · Pull Request Review Dashboard</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  </head>
+  <body>
+    <div class="Header">
+  <div class="Header-item">
+      <a href="#" class="Header-link f4 d-flex flex-items-center">
+        <span>PURR</span>
+      </a>
+    </div>
+    <div class="Header-item">
+      <a href="/" class="Header-link">Pull Requests</a>
+    </div>
+    <div class="Header-item Header-item--full">
+        
+  </div>
+  </div>
+    <div class="container-lg clearfix">
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

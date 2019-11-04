@@ -1,0 +1,12 @@
+/* This file is for your main application css. */
+
+@import "@primer/css/index.scss";
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Box-row :hover {
+  background-color: $gray-000;
+}

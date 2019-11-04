@@ -1,0 +1,55 @@
+<div class="Box-row p-0 mt-0">
+  <div class="d-table table-fixed width-full position-relative pb-2">
+    <div class="float-left pt-2 pl-3">
+      <img class="avatar" alt="<%= @user["login"] %>" src="<%= @user["avatar_url"]%>" width="48" height="48" />
+    </div>
+    <div class="float-left col-6 lh-condensed p-2">
+      <a class="link-gray-dark v-align-middle no-underline h4" href="<%= @html_url %>"><%= @title %></a>
+      <span class="labels lh-default">
+      <%= for label <- @labels do %>
+        <a class="d-inline-block IssueLabel bg-gray text-black" style="background-color: #<%= label["color"] %> !important" title="<%= label["name"] %>"><%= label["name"] %></a>
+      <% end %>
+      </span>
+      <div class="mt-1 text-small text-gray">
+        <span>
+          #<%= @number %>
+          opened <span>
+          <% 
+          {:ok, str} = Elixir.Timex.Parse.DateTime.Parser.parse(@created_at, "{ISO:Extended:Z}") 
+          {:ok, rel_str} = Timex.format(str, "{relative}", :relative)
+          %>
+          <%= rel_str %>
+          </span> by
+          <span><%= @user["login"] %></span>
+        </span>
+      </div>
+    </div>
+    <div class="float-right col-4">
+      <div class="float-right col-12 no-wrap pt-2 pr-3 text-right">
+        <span class="ml-3">
+          <svg class="octicon octicon-diff" viewbox="0 0 13 16" version="1.1" width="13" height="16">
+            <path fill-rule="evenodd"
+              d="M6 7h2v1H6v2H5V8H3V7h2V5h1v2zm-3 6h5v-1H3v1zM7.5 2L11 5.5V15c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h6.5zM10 6L7 3H1v12h9V6zM8.5 0H3v1h5l4 4v8h1V4.5L8.5 0z">
+            </path>
+          </svg>
+          <span class="Counter">
+            <%= @file_count %>
+          </span>
+        </span>
+        <span class="h6 ml-3">
+          <span class="text-green">+<%= @change_additions %></span> / <span class="text-red">-<%= @change_deletions %></span>
+        </span>
+        <span class="no-wrap pt-2 pr-3 ml-3 text-right">
+          <span class="muted-link" aria-label="1 comment">
+            <svg class="octicon octicon-comment v-align-middle" viewbox="0 0 16 16" version="1.1" width="16" height="16" >
+              <path
+                d="M14 1H2c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1h2v3.5L7.5 11H14c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zm0 9H7l-2 2v-2H2V2h12v8z">
+              </path>
+            </svg>
+            <span class="text-small text-bold"><%= @comment_count %></span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
