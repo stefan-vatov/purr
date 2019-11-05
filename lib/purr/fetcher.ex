@@ -67,7 +67,8 @@ defmodule Purr.Fetcher do
     details = %{details | created_at: data["created_at"]}
     details = %{details | number: data["number"]}
     details = %{details | html_url: data["html_url"]}
-    details = %{details | comment_count: get_comment_count(repo, data["number"])}
+    {:ok, comment_count, _issue_comments} = get_comment_count(repo, data["number"])
+    details = %{details | comment_count: comment_count}
     details = %{details | approval_count: get_approval_count(repo, data["number"])}
     details = Map.merge(details, get_file_count(repo, data["number"]))
   end
@@ -78,7 +79,10 @@ defmodule Purr.Fetcher do
     {_, body, _response} =
       Tentacat.Pulls.Comments.list(@client, repo[:owner], repo[:name], pr_number)
 
-    length(body)
+    {_, issue_body, _response} =
+      Tentacat.Issues.Comments.list(@client, repo[:owner], repo[:name], pr_number)
+
+    {:ok, length(body) + length(issue_body), issue_body}
   end
 
   def get_file_count(repo, pr_number) do
