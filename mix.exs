@@ -39,7 +39,7 @@ defmodule Purr.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:tentacat, "~> 1.0"},
+      {:tentacat, "~> 2.1"},
       {:timex, "~> 3.5"},
       {:quantum, "~> 2.3"}
     ]
