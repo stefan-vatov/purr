@@ -41,7 +41,7 @@ defmodule Purr.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:tentacat, "~> 2.1"},
       {:timex, "~> 3.5"},
-      {:quantum, "~> 2.3"}
+      {:quantum, "~> 3.3"}
     ]
   end
 end
