@@ -9,7 +9,7 @@
       <a class="link-gray-dark v-align-middle no-underline h4" href="<%= @html_url %>"><%= @title %></a>
       <span class="labels lh-default">
       <%= for label <- @labels do %>
-        <a class="d-inline-block IssueLabel bg-gray text-black" style="background-color: #<%= label["color"] %> !important" title="<%= label["name"] %>"><%= label["name"] %></a>
+        <a class="d-inline-block IssueLabel bg-gray text-black" style="color:whitesmoke; background-color: #<%= label["color"] %> !important" title="<%= label["name"] %>"><%= label["name"] %></a>
       <% end %>
       </span>
       <div class="mt-1 text-small text-gray">
